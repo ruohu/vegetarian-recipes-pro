@@ -18,7 +18,7 @@ const Search = () => {
   let params = useParams();
 
   const { data, isLoading, error } = useFetch(
-    `${api.URL}${api.GET_SEARCH}&tags=vegetarian${apiQuery}`
+    `${api.URL}${api.GET_SEARCH}&tags=vegetarian&number=100${apiQuery}`
   );
 
   useEffect(() => {

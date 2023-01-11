@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import './SubFilterComponent.scss';
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { addChecked, removeChecked } from "../../redux/actions";
 
 const SubFilterComponent = ({ dataList = [], title, checkedList, category }) => {

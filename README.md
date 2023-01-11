@@ -32,7 +32,7 @@ Vegetarian Recipes Pro is a simple React application that allows users to search
 
 ### Live Demo
 
-Click [here]() and try the app online
+Click [here](https://vegetarian-recipes-pro.netlify.app/) and try the app online
 
 
 ### Built With
