@@ -1,0 +1,38 @@
+@import '../../base.scss';
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: $primary-color;
+
+  a {
+    color: white;
+  }
+}
+
+.nav-links {
+  padding: 0 1.5em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 0.8em;
+}
+
+.logo {
+  height: 40px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  +.app-container {
+    padding-top: 4.5rem;
+  }
+}

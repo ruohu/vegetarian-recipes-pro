@@ -1,0 +1,20 @@
+@import '../../base.scss';
+
+.loading-text {
+  font-size: 1.5em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid $secondary-color;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: App-logo-spin 1s linear infinite;
+  margin-right: 5px;
+}

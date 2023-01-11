@@ -1,0 +1,79 @@
+@import './base';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-stack;
+  color: $text-color;
+}
+
+a {
+  color: $secondary-color;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: $font-stack;
+  margin-top: 1em;
+  padding: 1em 0.7em;
+  border-radius: 5px;
+  background-color: $primary-color;
+  color: white;
+  border-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: $darker-primary-color;
+
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  padding: 0.5em 1em;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $secondary-color;
+  border-radius: 3em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $darker-primary-color;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

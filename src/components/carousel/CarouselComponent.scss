@@ -1,0 +1,17 @@
+.carousel-container {
+  padding: 1.5em 2em;
+}
+
+.carousel-cards {
+  padding: 1em 1.5em;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+
+  >* {
+    margin-right: 1em;
+    flex: 0 0 auto;
+    width: 250px;
+  }
+}

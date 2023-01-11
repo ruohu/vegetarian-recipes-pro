@@ -1,0 +1,20 @@
+.subfilter-container {
+  margin-bottom: 1.5em;
+
+  span {
+    font-weight: bold;
+  }
+
+  .subfilter-box {
+    margin: 1em 0.4em;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 10rem));
+    grid-gap: 1rem;
+
+    label {
+      margin-left: 0.5em;
+    }
+  }
+}
