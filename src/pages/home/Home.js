@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import CarouselComponent from '../../components/carousel/CarouselComponent';
-import api from '../../api';
+import { useGetRandomRecipesQuery, useGetSearchRecipesQuery } from '../../services/recipesApi';
 
 const Home = () => {
 
@@ -16,15 +16,15 @@ const Home = () => {
       </section>
       <section id="categories">
         <CarouselComponent
-          recipesUrl={`${api.URL}${api.GET_RANDOM}&tags=vegetarian&number=12`}
+          useGetRecipes={useGetRandomRecipesQuery({ number: 12 })}
           carouselTitle="Popular Recipes"
         />
         <CarouselComponent
-          recipesUrl={`${api.URL}${api.GET_SEARCH}&diet=gluten free,vegetarian&number=12`}
+          useGetRecipes={useGetSearchRecipesQuery({ number: 12, subQuery: "&diet=gluten free" })}
           carouselTitle="Gluten free Recipes"
         />
         <CarouselComponent
-          recipesUrl={`${api.URL}${api.GET_SEARCH}&intolerances=dairy&diet=vegetarian&number=12`}
+          useGetRecipes={useGetSearchRecipesQuery({ number: 12, subQuery: "&intolerances=dairy&diet=vegetarian&offset=12" })}
           carouselTitle="Dairy free Recipes"
         />
       </section>

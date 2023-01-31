@@ -2,24 +2,20 @@ import React, { useEffect, useState } from 'react';
 import './Search.scss';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useFetch } from '../../hooks/useFetch';
 import { NO_KEYWORD } from '../../utils/Constants';
-
-import api from '../../api';
 
 import SearchForm from '../../components/search-form/SearchForm';
 import RecipesPagination from '../../components/RecipesPagination/RecipesPagination';
 import LoadingComponent from '../../components/loading/LoadingComponent';
 import ErrorComponent from '../../components/error/ErrorComponent';
+import { useGetSearchRecipesQuery } from '../../services/recipesApi';
 
 const Search = () => {
   const [recipes, setRecipes] = useState([]);
-  const apiQuery = useSelector((state) => state.checkedReducer.apiQuery);
+  const optionsQuery = useSelector((state) => state.checkedReducer.optionsQuery);
   let params = useParams();
 
-  const { data, isLoading, error } = useFetch(
-    `${api.URL}${api.GET_SEARCH}&tags=vegetarian&number=100${apiQuery}`
-  );
+  const { data, isLoading, error } = useGetSearchRecipesQuery({ number: 100, subQuery: optionsQuery });
 
   useEffect(() => {
     if (data) {

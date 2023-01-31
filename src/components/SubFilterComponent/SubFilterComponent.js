@@ -1,22 +1,18 @@
 import React, { useEffect } from "react";
 import './SubFilterComponent.scss';
 import { useDispatch, connect } from "react-redux";
-import { addChecked, removeChecked } from "../../redux/actions";
+import { addChecked, removeChecked } from "../../redux/reducers/checkedOptionsSlice";
 
 const SubFilterComponent = ({ dataList = [], title, checkedList, category }) => {
   const dispatch = useDispatch();
 
   const handleChange = (id) => {
     if (checkedList[category].includes(id)) {
-      dispatch(removeChecked(id, category));
+      dispatch(removeChecked({ checked: id, category }));
     } else {
-      dispatch(addChecked(id, category));
+      dispatch(addChecked({ checked: id, category }));
     }
   }
-
-  useEffect(() => {
-
-  }, []);
 
   return (
     <div className="subfilter-container">

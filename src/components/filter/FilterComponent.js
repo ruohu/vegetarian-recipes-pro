@@ -3,23 +3,24 @@ import './FilterComponent.scss';
 import { cuisines } from '../../data/cuisines';
 import { excludes } from '../../data/excludes';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetChecked } from '../../redux/actions';
+import { resetChecked } from '../../redux/reducers/checkedOptionsSlice';
 
 import SubFilterComponent from '../SubFilterComponent/SubFilterComponent';
 
-const FilterComponent = () => {
+const FilterComponent = ({ handleSubmit }) => {
 
   const [open, setOpen] = useState(false);
   const checkedList = useSelector((state) => state.checkedReducer.checkedList);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-
-  }, []);
-
   const handleReset = () => {
     dispatch(resetChecked());
   };
+
+  const handleSearchClick = (e) => {
+    setOpen(false);
+    handleSubmit(e);
+  }
 
   return (
     <div className="filter-container">
@@ -36,7 +37,7 @@ const FilterComponent = () => {
           <SubFilterComponent dataList={excludes} title="Excludes" category="excludes" />
           <div className="btn-container">
             <button type="button" className="reset-btn" onClick={handleReset}>Reset</button>
-            <button>Search</button>
+            <button onClick={handleSearchClick}>Search</button>
           </div>
         </div>
       }

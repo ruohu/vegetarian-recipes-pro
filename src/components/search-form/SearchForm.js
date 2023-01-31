@@ -3,7 +3,7 @@ import './SearchForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { NO_KEYWORD } from '../../utils/Constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setApiQuery } from '../../redux/actions';
+import { setOptionsQuery } from '../../redux/reducers/checkedOptionsSlice';
 
 import FilterComponent from '../filter/FilterComponent';
 
@@ -19,8 +19,8 @@ const SearchForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let apiQuery = `&query=${searchValue}&cuisine=${checkedList.cuisines}&intolerances=${checkedList.excludes}`;
-    dispatch(setApiQuery(apiQuery));
+    let optionsQuery = `&query=${searchValue}&cuisine=${checkedList.cuisines}&intolerances=${checkedList.excludes}`;
+    dispatch(setOptionsQuery(optionsQuery));
     if (searchValue !== "") {
       navigate("/search/" + searchValue);
     } else {
@@ -37,7 +37,7 @@ const SearchForm = () => {
           placeholder="Search"
           onChange={handleChange}
           value={searchValue} />
-        <FilterComponent />
+        <FilterComponent handleSubmit={handleSubmit} />
       </form>
     </div>
   );

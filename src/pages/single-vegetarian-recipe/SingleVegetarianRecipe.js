@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './SingleVegetarianRecipe.scss';
 
-import api from '../../api';
-import { useFetch } from '../../hooks/useFetch';
 import defaultImage from "../../assets/images/no-image.jpg";
 import LoadingComponent from '../../components/loading/LoadingComponent';
 import ErrorComponent from '../../components/error/ErrorComponent';
+import { useGetRecipeDetailsQuery } from '../../services/recipesApi';
 
 const SingleVegetarianRecipe = () => {
   const [details, setDetails] = useState({})
   let params = useParams();
 
-  const { data, isLoading, error } = useFetch(`${api.URL}/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+  const { data, isLoading, error } = useGetRecipeDetailsQuery({ id: params.id })
 
   useEffect(() => {
     if (data) {

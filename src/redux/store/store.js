@@ -1,6 +1,15 @@
-import { createStore } from "redux";
-import rootReducer from "../reducers";
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import checkedOptionsReducer from '../reducers/checkedOptionsSlice';
+import { recipesApi } from '../../services/recipesApi';
 
-const store = createStore(rootReducer);
+export const store = configureStore({
+  reducer: {
+    checkedReducer: checkedOptionsReducer,
+    [recipesApi.reducerPath]: recipesApi.reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(recipesApi.middleware),
+})
 
-export default store;
+setupListeners(store.dispatch);

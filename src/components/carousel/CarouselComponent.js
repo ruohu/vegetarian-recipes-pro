@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './CarouselComponent.scss';
 
-import { useFetch } from '../../hooks/useFetch';
 import defaultImage from "../../assets/images/no-image.jpg";
 
 import CardComponent from '../card/CardComponent';
 import LoadingComponent from '../loading/LoadingComponent';
 
-const CarouselComponent = ({ recipesUrl, carouselTitle }) => {
+const CarouselComponent = ({ useGetRecipes, carouselTitle }) => {
 
-  const { data, isLoading, error } = useFetch(recipesUrl);
+  const { data, isLoading, error } = useGetRecipes;
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {

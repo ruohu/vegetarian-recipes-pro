@@ -12,10 +12,10 @@ export const removeChecked = (checked, category) => {
   }
 }
 
-export const setApiQuery = (apiQuery) => {
+export const setOptionsQuery = (optionsQuery) => {
   return {
     type: 'SET_API_QUERY',
-    payload: apiQuery
+    payload: optionsQuery
   }
 }
 
