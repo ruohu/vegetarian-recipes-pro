@@ -15,7 +15,7 @@ const Search = () => {
   const optionsQuery = useSelector((state) => state.checkedReducer.optionsQuery);
   let params = useParams();
 
-  const { data, isLoading, error } = useGetSearchRecipesQuery({ number: 100, subQuery: optionsQuery });
+  const { data, isFetching, error } = useGetSearchRecipesQuery({ number: 100, subQuery: optionsQuery });
 
   useEffect(() => {
     if (data) {
@@ -23,7 +23,7 @@ const Search = () => {
     }
   }, [data]);
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingComponent />
   }
 

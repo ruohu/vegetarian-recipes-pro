@@ -8,7 +8,7 @@ import LoadingComponent from '../loading/LoadingComponent';
 
 const CarouselComponent = ({ useGetRecipes, carouselTitle }) => {
 
-  const { data, isLoading, error } = useGetRecipes;
+  const { data, isFetching, error } = useGetRecipes;
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -21,14 +21,14 @@ const CarouselComponent = ({ useGetRecipes, carouselTitle }) => {
     }
   }, [data]);
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingComponent />
   }
 
   return (
     <div className="carousel-container">
       <h3>{carouselTitle}</h3>
-      {isLoading
+      {isFetching
         ? <LoadingComponent />
         : error
           ? <div>

@@ -11,7 +11,7 @@ const SingleVegetarianRecipe = () => {
   const [details, setDetails] = useState({})
   let params = useParams();
 
-  const { data, isLoading, error } = useGetRecipeDetailsQuery({ id: params.id })
+  const { data, isFetching, error } = useGetRecipeDetailsQuery({ id: params.id })
 
   useEffect(() => {
     if (data) {
@@ -19,7 +19,7 @@ const SingleVegetarianRecipe = () => {
     }
   }, [data]);
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingComponent />;
   }
 
