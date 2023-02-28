@@ -39,7 +39,6 @@ Click [here](https://vegetarian-recipes-pro.netlify.app/) and try the app online
 
 * [React](https://it.reactjs.org/)
 * [Redux Toolkit](https://redux-toolkit.js.org/)
-* [Axios](https://github.com/axios/axios)
 * [React Router](https://reactrouter.com/en/v6.3.0/getting-started/overview)
 * [react-paginate](https://www.npmjs.com/package/react-paginate)
 
