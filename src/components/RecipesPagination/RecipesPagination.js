@@ -4,15 +4,15 @@ import './RecipesPagination.scss';
 import CardComponent from '../card/CardComponent';
 import defaultImage from "../../assets/images/no-image.jpg";
 import ReactPaginate from 'react-paginate';
+import { useAsyncValue } from 'react-router-dom';
 
-const RecipesPagination = ({
-  recipes = []
-}) => {
+const RecipesPagination = () => {
 
   const [currentItems, setCurrentItems] = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
   const itemsPerPage = 12;
+  const recipes = useAsyncValue()?.results;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;

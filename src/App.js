@@ -1,34 +1,54 @@
 import React from 'react';
 import './App.scss';
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route
+  Route,
+  createRoutesFromElements,
+  createBrowserRouter,
+  RouterProvider,
+  defer
 } from 'react-router-dom';
 
 // Pages
 import Home from './pages/home/Home';
 import SingleVegetarianRecipe from './pages/single-vegetarian-recipe/SingleVegetarianRecipe';
 import NotFound from './pages/not-found/NotFound';
-import Navbar from './components/navbar/Navbar';
 import Search from './pages/search/Search';
 import SearchForm from './components/search-form/SearchForm';
+import ErrorComponent from './components/error/ErrorComponent';
+import RootComponent from './components/rootComponent/RootComponent';
+import { homeLoader, searchLoader, singleVegetarianRecipeLoader } from './utils/recipeLoaders';
 
 function App() {
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route exact path="/" element={<RootComponent />}>
+        <Route index element={<Home />}
+          loader={() => { return defer({ loadedRecipes: homeLoader() }) }} />
+        <Route exact path="/search"
+          element={<SearchForm />}
+        />
+        <Route exact path="/search/:search"
+          element={<Search />}
+          loader={searchLoader}
+        />
+        <Route exact path="/recipe/:id"
+          element={<SingleVegetarianRecipe />}
+          loader={(params) => { return singleVegetarianRecipeLoader(params.params) }}
+
+        />
+        <Route exact path="/error"
+          element={<ErrorComponent />}
+        />
+        <Route exact path="*"
+          element={<NotFound />}
+        />
+      </Route>
+    )
+  );
   return (
     <div>
-      <Router>
-        <Navbar />
-        <div className="app-container">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/search" element={<SearchForm />} />
-            <Route exact path="/search/:search" element={<Search />} />
-            <Route exact path="/recipe/:id" element={<SingleVegetarianRecipe />} />
-            <Route exact path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
+      <RouterProvider router={router} />
     </div>
   );
 }

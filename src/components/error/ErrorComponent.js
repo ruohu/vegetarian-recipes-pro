@@ -4,7 +4,7 @@ import './ErrorComponent.scss';
 const ErrorComponent = () => {
 
   return (
-    <span className="error-message"> Sorry! Something went wrong...</span>
+    <div className="error-message"> Sorry! Something went wrong...</div>
   );
 }
 

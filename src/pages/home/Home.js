@@ -1,9 +1,12 @@
 import React from 'react';
 import './Home.scss';
 import CarouselComponent from '../../components/carousel/CarouselComponent';
-import { useGetRandomRecipesQuery, useGetSearchRecipesQuery } from '../../services/recipesApi';
+import { Await, useLoaderData } from 'react-router-dom';
+import LoadingComponent from '../../components/loading/LoadingComponent';
+import ErrorComponent from '../../components/error/ErrorComponent';
 
 const Home = () => {
+  const recipes = useLoaderData();
 
   return (
     <>
@@ -15,18 +18,32 @@ const Home = () => {
         </a>
       </section>
       <section id="categories">
-        <CarouselComponent
-          useGetRecipes={useGetRandomRecipesQuery({ number: 12 })}
-          carouselTitle="Popular Recipes"
-        />
-        <CarouselComponent
-          useGetRecipes={useGetSearchRecipesQuery({ number: 12, subQuery: "&diet=gluten free" })}
-          carouselTitle="Gluten free Recipes"
-        />
-        <CarouselComponent
-          useGetRecipes={useGetSearchRecipesQuery({ number: 12, subQuery: "&intolerances=dairy&diet=vegetarian&offset=12" })}
-          carouselTitle="Dairy free Recipes"
-        />
+        <React.Suspense fallback={<LoadingComponent />}>
+          <Await
+            resolve={recipes.loadedRecipes}
+            errorElement={<ErrorComponent />}
+          >
+            {
+              (loadedRecipes) => (
+                <>
+                  <CarouselComponent
+                    recipes={loadedRecipes?.randomRecipes}
+                    carouselTitle="Popular Recipes"
+                  />
+                  <CarouselComponent
+                    recipes={loadedRecipes?.glutenFreeRecipes}
+                    carouselTitle="Gluten free Recipes"
+                  />
+                  <CarouselComponent
+                    recipes={loadedRecipes?.dairyFreeRecipes}
+                    carouselTitle="Dairy free Recipes"
+                  />
+                </>
+              )
+            }
+
+          </Await>
+        </React.Suspense>
       </section>
     </>
   )

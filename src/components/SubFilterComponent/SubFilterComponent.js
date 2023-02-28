@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './SubFilterComponent.scss';
 import { useDispatch, connect } from "react-redux";
 import { addChecked, removeChecked } from "../../redux/reducers/checkedOptionsSlice";

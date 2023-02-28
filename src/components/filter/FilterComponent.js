@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './FilterComponent.scss';
 import { cuisines } from '../../data/cuisines';
 import { excludes } from '../../data/excludes';
